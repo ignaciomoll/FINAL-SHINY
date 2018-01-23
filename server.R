@@ -5,7 +5,7 @@ library(leaflet)
 shinyServer(function(input, output) {
   
   # buscamos un ractive cuando cambiemos los despegables y le demos al boton buscar
-  # primer reactiveValues para generar histograma delay
+
   misDatos <- reactiveValues(muestra = NULL)
   
   observeEvent(input$go, {
@@ -13,16 +13,16 @@ shinyServer(function(input, output) {
     misDatos$muestra <- dataset
     
     ## PASO 1. Filtrar por origen SI aplica
-    
+    # browser()
     if (input$despegabelOrigen != "TODOS") {
       
-      misDatos$muestra <- misDatos$muestra[misDatos$muestra$ORIGIN_AIRPORT == input$despegableOrigen, ]
+      misDatos$muestra <- misDatos$muestra[misDatos$muestra$AIRPORT.origen == input$despegableOrigen, ]
     }
     ## PASO 2. Filtrar por destino SI aplica
     
     if (input$despegableDestino != "TODOS") {
       
-      misDatos$muestra <- misDatos$muestra[misDatos$muestra$DESTINATION_AIRPORT == input$despegableDestino, ]
+      misDatos$muestra <- misDatos$muestra[misDatos$muestra$AIRPORT.destino == input$despegableDestino, ]
     }
     
     if (nrow(misDatos$muestra) == 0) {
