@@ -34,7 +34,7 @@ ui <- shinyUI(fluidPage(
     # Show a plot of the generated distribution
     mainPanel(
       leafletOutput("map"),
-      verbatimTextOutput("distancia") ,
+      uiOutput("distancia") ,
       plotOutput("retraso"),
       plotOutput("salida")
     )
