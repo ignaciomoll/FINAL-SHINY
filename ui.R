@@ -13,10 +13,12 @@ ui <- shinyUI(fluidPage(
     sidebarPanel(
       selectInput("despegableOrigen", 
                   label = "ORIGEN",
-                  choices = choicesAeropuertos),
+                  choices = choicesAeropuertos,
+                  selected = "TODOS"),
       selectInput("despegableDestino",
                   label = "DESTINO",
-                  choices = choicesAeropuertos),
+                  choices = choicesAeropuertos,
+                  selected = "TODOS"),
       actionButton("go", "BUSCAR")
     ),
     
