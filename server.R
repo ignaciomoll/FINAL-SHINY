@@ -13,16 +13,15 @@ shinyServer(function(input, output) {
     misDatos$muestra <- dataset
     
     ## PASO 1. Filtrar por origen SI aplica
-    # browser()
-    if (input$despegabelOrigen != "TODOS") {
+    if (input$despegableOrigen != "TODOS") {
       
-      misDatos$muestra <- misDatos$muestra[misDatos$muestra$AIRPORT.origen == input$despegableOrigen, ]
+      misDatos$muestra <- misDatos$muestra[misDatos$muestra$ORIGIN_AIRPORT == input$despegableOrigen, ]
     }
     ## PASO 2. Filtrar por destino SI aplica
     
     if (input$despegableDestino != "TODOS") {
       
-      misDatos$muestra <- misDatos$muestra[misDatos$muestra$AIRPORT.destino == input$despegableDestino, ]
+      misDatos$muestra <- misDatos$muestra[misDatos$muestra$DESTINATION_AIRPORT == input$despegableDestino, ]
     }
     
     if (nrow(misDatos$muestra) == 0) {
