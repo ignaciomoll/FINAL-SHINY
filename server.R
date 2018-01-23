@@ -40,12 +40,12 @@ shinyServer(function(input, output) {
     }
   })
   
-  # con renderText generamos la frase con la distancia entre aeropuertos
-  output$distancia <- renderText({
+
+  output$distancia <- renderUI({
+    browser()
+    tabs <- paste("Distancia(MILLAS): ", misDatos$muestra$DISTANCE[[1]])
     
-    if (nrow(misDatos$muestra) > 0) {
-      paste0("DISTANCIA(Millas): ", misDatos$muestra[1,6]) 
-    }
+    do.call(verbatimTextOutput, tabs)
   })
   
   # tercer histograma que genera el histograma con el tiempo de salida
