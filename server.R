@@ -102,24 +102,23 @@ shinyServer(function(input, output) {
   #     destino$destin <- s[, c(19,20)]
   #   })
   #   
-  #   output$map <- renderLeaflet({
-  #     
-  #     req(origen$origin)
-  #     req(destino$destin)
-  #     
-  #     leaflet() %>%
-  #       addProviderTiles("Esri.WorldImagery") %>%
-  #       setView(lat = 37.681918,
-  #               lng = -97.368171,
-  #               zoom = 4) %>%
-  #       addMarkers(lat = origen$origin$LATITUDE.origen,
-  #                  lng = origen$origin$LONGITUDE.origen) %>%
-  #       # clusterOptions = markerClusterOptions(),
-  #       # popup = as.character(dataset$AIRPORT))
-  #       addMarkers(lat = destino$destin$LATITUDE.destino,
-  #                  lng = destino$destin$LONGITUDE.destino)
-  #     
-  #     
-  #   })
-  #   
+  output$map <- renderLeaflet({
+    
+    req(misDatos$muestra)
+    
+    leaflet() %>%
+      addProviderTiles("Esri.WorldImagery") %>%
+      setView(lat = 37.681918,
+              lng = -97.368171,
+              zoom = 4) %>%
+      addMarkers(lat = misDatos$muestra$LATITUDE.origen,
+                 lng = misDatos$muestra$LONGITUDE.origen) %>%
+      # clusterOptions = markerClusterOptions(),
+      # popup = as.character(dataset$AIRPORT))
+      addMarkers(lat = misDatos$muestra$LATITUDE.destino,
+                 lng = misDatos$muestra$LONGITUDE.destino)
+    
+    
+  })
+  
 })
