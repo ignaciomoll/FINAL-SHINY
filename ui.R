@@ -35,8 +35,8 @@ ui <- shinyUI(fluidPage(
     mainPanel(
       leafletOutput("map"),
       uiOutput("distancia") ,
-      plotOutput("retraso"),
-      plotOutput("salida")
+      uiOutput("retraso"),
+      uiOutput("salida")
     )
   )
 )
