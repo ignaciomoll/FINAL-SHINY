@@ -30,33 +30,57 @@ shinyServer(function(input, output) {
   })
   
   # primer histograma con frecuencias de retraso entre aeropuertos
-  output$retraso <- renderPlot({
+  output$retraso <- renderUI({
     
-    if (nrow(misDatos$muestra) > 0) {
-      # histograma
-      hist(misDatos$muestra$ARRIVAL_DELAY,
-           xlab = "Numero de Minutos",
-           main = "Retraso de Aviones")
-    }
+    req(misDatos$muestra)
+
+      datos <- misDatos$muestra$ARRIVAL_DELAY
+      if (min(datos) == max(datos)) {
+        p("Tiempo Retrasdo(MINUTOS):", as.numeric(as.character(min(datos))))
+      } else {
+        output$graficaDelay <- renderPlot({hist(misDatos$muestra$ARRIVAL_DELAY,
+                                                xlab = "Numero de Minutos",
+                                                main = "Retraso Aviones",
+                                                xlim = range(1:500))
+        })
+        plotOutput("graficaDelay")
+      }
   })
   
 
   output$distancia <- renderUI({
-    browser()
-    tabs <- paste("Distancia(MILLAS): ", misDatos$muestra$DISTANCE[[1]])
     
-    do.call(verbatimTextOutput, tabs)
+    # usar req para que no arranque si no hay muestra aun
+    req(misDatos$muestra)
+   
+    datos <- misDatos$muestra$DISTANCE
+    if (min(datos) == max(datos)) {
+      p("Distancia(MILLAS):", as.character(min(datos)))
+    } else {
+      output$graficaDistancia <- renderPlot({hist(misDatos$muestra$DISTANCE,
+                                                  xlab = "Millas",
+                                                  main = "Distancia")
+      })
+      plotOutput("graficaDistancia")
+    }
   })
   
   # tercer histograma que genera el histograma con el tiempo de salida
-  output$salida <- renderPlot({
+  output$salida <- renderUI({
     
-    if (nrow(misDatos$muestra) > 0) {
-      # histograma
-      hist(misDatos$muestra$DEPARTURE_TIME,
-           xlab = "Horas",
-           main = "Hora de salida")
+    req(misDatos$muestra)
+    
+    datos <- misDatos$muestra$DEPARTURE_TIME
+    if (min(datos) == max(datos)) {
+      p("Hora de Salida(HORAS):", as.character(min(datos)))
+    } else {
+      output$graficaSalida <- renderPlot({hist(misDatos$muestra$DEPARTURE_TIME,
+                                               xlab = "Horas",
+                                               main = "Hora de salida")
+      })
+      plotOutput("graficaSalida")
     }
+    
   })
   
   
