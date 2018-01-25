@@ -1,3 +1,13 @@
+# copiamos el siguiente link en el buscador
+# https://www.kaggle.com/usdot/flight-delays/data
+
+# de la página resultante nos descargamos los dos siguientes ficheros:
+
+# - airports.csv
+# - flights.csv
+
+# Por último corremos el código de abajo para obtener nuestro dataaset final
+
 vuelos <- read.csv("flights.csv")
 vuelos <- vuelos[,-c(26,27,28,29,30,31)]
 
