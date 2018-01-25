@@ -7,6 +7,7 @@ choicesAeropuertos <- crearListaAeropuertos()
 
 ui <- shinyUI(fluidPage(
   
+  
   titlePanel("Buscador de Vuelos"),
   
   sidebarLayout(
