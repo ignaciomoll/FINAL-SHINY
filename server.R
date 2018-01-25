@@ -8,6 +8,7 @@ shinyServer(function(input, output) {
 
   misDatos <- reactiveValues(muestra = NULL)
   
+  
   observeEvent(input$go, {
     
     misDatos$muestra <- dataset
